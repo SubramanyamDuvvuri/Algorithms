@@ -1,0 +1,13 @@
+build/
+out/
+.cache/
+.vs/
+.vscode/
+*.exe
+*.obj
+*.o
+*.ilk
+*.pdb
+*.log
+*.tmp
+
