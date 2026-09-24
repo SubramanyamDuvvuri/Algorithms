@@ -1,35 +1,38 @@
-# Lesson 22 Assignment - Threads
+# Lesson 22 Assignment: Threads, Lifetime, and Data Races
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 22](../../course/lesson-22-threads.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 211-213)
 
-Create a reproducible data race, repair it three ways, and build a cancellable `std::jthread` worker.
+- [ ] **Activity 211:** Start one jthread and join through scope exit.
+- [ ] **Activity 212:** Pass an owned value and a borrowed reference; document lifetimes.
+- [ ] **Activity 213:** Run two workers on disjoint output ranges.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 214-217)
 
-## Test
+- [ ] **Activity 214:** Create a race in an isolated example and diagnose it with ThreadSanitizer if available.
+- [ ] **Activity 215:** Repair the shared counter with a mutex.
+- [ ] **Activity 216:** Repair it with an atomic and compare semantics.
+- [ ] **Activity 217:** Use a stop_token in a worker loop.
 
-Repeated stress, cancellation before/during work, exceptions in workers, captured-lifetime failures, and shutdown.
+## Expert (activities 218-220)
 
-## Write
+- [ ] **Activity 218:** Test cancellation before and during work.
+- [ ] **Activity 219:** Audit callback captures for dangling references.
+- [ ] **Activity 220:** Describe happens-before edges for result publication and join.
 
-In `notes.md`: List every shared object, accessing thread, and synchronization relation.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Light)
+## Interview Rehearsal
 
-- Prefer `jthread` and include stopping in loop predicates.
-- Pass values or owned objects before experimenting with references.
-- Stress tests expose races but do not prove absence.
+Explain threads, lifetime, and data races from a blank page. Rebuild create a race in an isolated example and diagnose it with threadsanitizer if available under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

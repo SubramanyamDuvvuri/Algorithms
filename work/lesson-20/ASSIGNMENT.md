@@ -1,35 +1,38 @@
-# Lesson 20 Assignment - Graphs
+# Lesson 20 Assignment: Caches, Layout, and Allocators
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 20](../../course/lesson-20-cache-allocators.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 191-193)
 
-Build a generic graph library with BFS, DFS, topological sort, Dijkstra, A*, DSU, Kruskal, and Prim.
+- [ ] **Activity 191:** Build equivalent AoS and SoA representations for one workload.
+- [ ] **Activity 192:** Verify their outputs against the same oracle.
+- [ ] **Activity 193:** Measure sequential traversal over both layouts.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 194-197)
 
-## Test
+- [ ] **Activity 194:** Measure random access separately from sequential traversal.
+- [ ] **Activity 195:** Estimate bytes touched per operation and identify unused fields.
+- [ ] **Activity 196:** Demonstrate false sharing with independent counters safely.
+- [ ] **Activity 197:** Add padding or local aggregation and compare throughput.
 
-Disconnected/cyclic graphs, duplicate edges, zero/large weights, path reconstruction, and differential tests.
+## Expert (activities 198-200)
 
-## Write
+- [ ] **Activity 198:** Use std::pmr monotonic_buffer_resource for batch lifetime.
+- [ ] **Activity 199:** Check allocation counts and resource lifetime boundaries.
+- [ ] **Activity 200:** Document when cache or allocator changes hurt or do not matter.
 
-In `notes.md`: Prove preconditions and correctness; explain representation choices.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Light)
+## Interview Rehearsal
 
-- Identify directed/weighted/sparse/mutable properties before representation.
-- Complete traversals and path reconstruction before weighted algorithms.
-- Reject inputs violating algorithm preconditions.
+Explain caches, layout, and allocators from a blank page. Rebuild measure random access separately from sequential traversal under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

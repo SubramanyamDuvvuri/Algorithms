@@ -1,35 +1,38 @@
-# Lesson 19 Assignment - Core data structures
+# Lesson 19 Assignment: Benchmark Design and Profiling
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 19](../../course/lesson-19-benchmarking.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 181-183)
 
-Implement dynamic array, intrusive list, open-address hash table, heap, BST, red-black tree, trie, and LRU.
+- [ ] **Activity 181:** Write a performance hypothesis and a representative input generator.
+- [ ] **Activity 182:** Prevent dead-code elimination using observable results.
+- [ ] **Activity 183:** Compile release and debug variants and record flags.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 184-187)
 
-## Test
+- [ ] **Activity 184:** Warm up before timing and run repeated samples.
+- [ ] **Activity 185:** Report median and spread, not a single best value.
+- [ ] **Activity 186:** Check correctness outside the timed region.
+- [ ] **Activity 187:** Profile a chosen workload and identify its dominant cost.
 
-Invariant checks after mutation, randomized differential tests, collisions, pathological insertion, allocation failure, and long sequences.
+## Expert (activities 188-190)
 
-## Write
+- [ ] **Activity 188:** Change exactly one variable and compare before/after.
+- [ ] **Activity 189:** Report CPU, compiler, sizes, and measurement limitations.
+- [ ] **Activity 190:** Reject or accept the original hypothesis with evidence.
 
-In `notes.md`: Provide complexity and memory-overhead tables for all eight structures.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Light)
+## Interview Rehearsal
 
-- Implement in order: array, list, heap, hash table, BST, trie, LRU, red-black tree.
-- Write invariant checks before advanced operations.
-- Use STL equivalents as randomized test oracles.
+Explain benchmark design and profiling from a blank page. Rebuild warm up before timing and run repeated samples under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

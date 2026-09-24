@@ -1,35 +1,38 @@
-# Lesson 9 Assignment - Value semantics
+# Lesson 9 Assignment - Templates, Containers, Iterators, and Generic APIs
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 9](../../course/lesson-09-templates-containers.md) before coding. This assignment is one chapter, not one giant program. Finish one activity, compile, and test before moving to the next. Keep existing working code.
 
-## Build
+## Core (activities 81-83)
 
-Implement checked `Money`, `Price`, `Quantity`, and fixed-point decimal value types.
+- [ ] **Activity 81:** Write a function template for a small operation on two values.
+- [ ] **Activity 82:** Write an array-reference template that preserves extent.
+- [ ] **Activity 83:** Create a class template with one invariant and two element types.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 84-87)
 
-## Test
+- [ ] **Activity 84:** Add a C++20 `requires` constraint for an operation the class actually uses.
+- [ ] **Activity 85:** Compare `vector` and `array` growth, copying, and bounds behavior.
+- [ ] **Activity 86:** Save a vector pointer or iterator, grow the vector, and explain invalidation without dereferencing it.
+- [ ] **Activity 87:** Use ordered and unordered maps for the same small lookup workload.
 
-Overflow, invalid parsing, ordering laws, equality/hash agreement, formatting, and forbidden conversions.
+## Expert (activities 88-90)
 
-## Write
+- [ ] **Activity 88:** Implement iteration with begin/end and state iterator category assumptions.
+- [ ] **Activity 89:** Replace one loop with a standard algorithm and compare outputs.
+- [ ] **Activity 90:** Build a generic checked buffer API; test int, const int, empty, and move-only element cases where supported.
 
-In `notes.md`: Explain regular types, `<=>`, `explicit`, and strict weak ordering.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- The generic operation compiles for intended types and rejects unsupported ones.
+- No invalidated iterator or span is dereferenced.
+- Container outputs match a simple reference implementation on empty and duplicate cases.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+An activity is complete when its behavior is predicted, the code compiles with warnings enabled, focused normal and boundary checks pass, and you can explain its ownership, failure behavior, and cost. Use `main.cpp` for experiments and demonstrations and `tests.cpp` for tests. Split into headers and source files only when code reuse requires it.
 
-## Hints (Guided)
+## Interview Rehearsal
 
-- Specify range, units, overflow, and normalization before operators.
-- Prefer symmetric non-member arithmetic built from compound assignment.
-- Property-test ordering laws and equality/hash agreement.
+Choose a container and generic API for a stated workload; defend invalidation and complexity. Solve a smaller version from a blank file after the untimed work, then explain the invariant, edge cases, time, and extra-space complexity aloud.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the three core concepts from the lesson using your own code and draw any relevant owner/lifetime diagram. In `design.md`, record preconditions, invariants, error behavior, and one rejected alternative. In `benchmark.md`, record a reproducible measurement only if the work has a meaningful performance question; otherwise explain why a benchmark would not teach you anything yet.

@@ -2,14 +2,14 @@
 
 Open the next incomplete lesson's `ASSIGNMENT.md`, read its linked course lesson, and complete the files in that directory.
 
-Assume you are restarting from the beginning. Lessons 1 and 2 contain a detailed beginner path for variables, memory, pointers, raw arrays, `std::array`, and `std::span`. Do each numbered checkpoint separately; do not try to complete an entire lesson in one sitting.
+Continue from your current work. Lessons 1-10 build C++ language mechanics; Lessons 11-18 develop algorithms and data structures; Lessons 19-28 cover performance and concurrency; Lessons 29-34 go underneath the language into Linux internals, syscalls, virtual memory, allocators, scheduling, and kernel modules; Lessons 35-42 move through architecture, GPU foundations, and a capstone. The activity numbers continue from 1 to 420. Complete and test one TODO at a time.
 
-Suggested first week: spend two sessions on Lesson 1 checkpoints 1-5, two sessions on checkpoints 6-10, one session testing and debugging, and one session writing the notes and explaining the mastery gate aloud. Speed is not the goal; being able to predict what the program does before running it is.
+Suggested first week: spend two sessions on Lesson 1 activities 1-5, two on activities 6-10, one on testing and debugging, and one on explaining the mastery gate aloud. Being able to predict and justify behavior matters more than finishing quickly.
 
 For each lesson:
 
 1. Read the theory.
-2. Implement the Build section.
+2. Complete the ten staged activities in the assignment and the matching `main.cpp` checklist.
 3. Write and run the required tests.
 4. Complete `notes.md`, `design.md`, and `benchmark.md`.
 5. Ask for a strict review before moving forward.
@@ -52,3 +52,9 @@ For each lesson:
 - [ ] [Lesson 34 assignment](lesson-34/ASSIGNMENT.md)
 - [ ] [Lesson 35 assignment](lesson-35/ASSIGNMENT.md)
 - [ ] [Lesson 36 assignment](lesson-36/ASSIGNMENT.md)
+- [ ] [Lesson 37 assignment](lesson-37/ASSIGNMENT.md)
+- [ ] [Lesson 38 assignment](lesson-38/ASSIGNMENT.md)
+- [ ] [Lesson 39 assignment](lesson-39/ASSIGNMENT.md)
+- [ ] [Lesson 40 assignment](lesson-40/ASSIGNMENT.md)
+- [ ] [Lesson 41 assignment](lesson-41/ASSIGNMENT.md)
+- [ ] [Lesson 42 assignment](lesson-42/ASSIGNMENT.md)

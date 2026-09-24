@@ -1,53 +1,38 @@
-# Lesson 2 Assignment - Arrays and span
+# Lesson 2 Assignment - Arrays, Strings, and Non-Owning Views
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 2](../../course/lesson-02-arrays-and-span.md) before coding. This assignment is one chapter, not one giant program. Finish one activity, compile, and test before moving to the next. Keep existing working code.
 
-## Build
+## Core (activities 11-13)
 
-Implement checksum and matrix APIs using pointer+size, array reference, `std::array`, and `std::span`; build a zero-allocation packet decoder.
+- [ ] **Activity 11:** Print indices, values, and addresses of a four-element raw array.
+- [ ] **Activity 12:** Calculate its count with `sizeof(a)/sizeof(a[0])` in its declaring scope.
+- [ ] **Activity 13:** Pass it to a pointer parameter and explain the lost count.
 
-## Beginner Path
+## Applied (activities 14-17)
 
-Do these in order and inspect the values in a debugger.
+- [ ] **Activity 14:** Write pointer-plus-size and fixed-array-reference `sum` overloads.
+- [ ] **Activity 15:** Repeat with `std::array`; compare `.size()`, copying, `[]`, and `.at()`.
+- [ ] **Activity 16:** Create a `std::vector`; record when growth invalidates a saved pointer.
+- [ ] **Activity 17:** Write `sum(std::span<const int>)` and call it with three owning containers.
 
-1. Declare `int values[5]`, initialize every element, print each index/value/address, and observe contiguous addresses.
-2. Compute the element count inside the declaring scope using `sizeof(values) / sizeof(values[0])`.
-3. Pass the array to `void inspect(const int values[])` and observe why `sizeof(values)` no longer gives the array size.
-4. Fix that API first with pointer-plus-size, then with `template<std::size_t N>` and an array reference.
-5. Repeat the operations using `std::array<int, 5>` and compare `.size()`, iteration, copying, and bounds-checked `.at()`.
-6. Write `sum(std::span<const int>)`. Call it with a raw array, `std::array`, and `std::vector`.
-7. Use `first`, `last`, and `subspan`; test invalid requested ranges before constructing them.
-8. Build the checksum function, then the matrix-row function, and only then attempt the packet decoder.
+## Expert (activities 18-20)
 
-Keep one page in `notes.md` titled “What owns the elements?” A raw array and `std::array` contain elements; a span only observes somebody else's elements.
+- [ ] **Activity 18:** Create checked `first`, `last`, and `subspan` views; test invalid requests before construction.
+- [ ] **Activity 19:** Compare `std::string` and `std::string_view` ownership with a token slice.
+- [ ] **Activity 20:** Read packet magic and version only after checking the minimum header size; test every shorter input.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Verification
 
-## Test
+- `sum` returns the same result through all four APIs.
+- Out-of-range `.at()` is caught; invalid subspans are rejected before construction.
+- Header reader rejects every truncated header and wrong magic without reading outside the buffer.
 
-Zero length, fixed/dynamic extent, malformed lengths, subspans, mutation, and dangling-view cases.
+An activity is complete when its behavior is predicted, the code compiles with warnings enabled, focused normal and boundary checks pass, and you can explain its ownership, failure behavior, and cost. Use `main.cpp` for experiments and demonstrations and `tests.cpp` for tests. Split into headers and source files only when code reuse requires it.
 
-Begin with direct `assert` checks. Include one `.at()` out-of-range test and catch the expected exception.
+## Interview Rehearsal
 
-## Write
+Design a single read-only buffer API for array, vector, and string bytes; state the size and lifetime contract. Solve a smaller version from a blank file after the untimed work, then explain the invariant, edge cases, time, and extra-space complexity aloud.
 
-In `notes.md`: Compare the four APIs and explain array decay and view lifetime.
+## Written Evidence
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
-
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
-
-## Hints (Guided)
-
-- Write one function per API style and call all with the same data.
-- Use `template<std::size_t N>` plus an array reference to preserve compile-time size.
-- Treat span as borrowed address plus extent; validate lengths before subspans.
-- Keep backing storage alive longer than every view.
-
-## Definition of Done
-
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the three core concepts from the lesson using your own code and draw any relevant owner/lifetime diagram. In `design.md`, record preconditions, invariants, error behavior, and one rejected alternative. In `benchmark.md`, record a reproducible measurement only if the work has a meaningful performance question; otherwise explain why a benchmark would not teach you anything yet.

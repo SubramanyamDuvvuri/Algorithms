@@ -1,35 +1,38 @@
-# Lesson 29 Assignment - Cache-aware design
+# Lesson 29 Assignment: Processes, Address Spaces, and the OS/Process Model
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 29](../../course/lesson-29-processes-and-address-spaces.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 281-283)
 
-Benchmark AoS vs SoA, branchy vs branch-reduced filters, and contended vs padded counters; optimize order-book layout.
+- [ ] **Activity 281:** Inspect a running process's memory map via /proc/self/maps and identify each segment (text, heap, stack, mmap regions).
+- [ ] **Activity 282:** Fork a child process and observe independent address spaces (copy-on-write) with a shared counter that does not change across processes.
+- [ ] **Activity 283:** Use exec to replace a process image and explain what state survives fork+exec versus what is destroyed.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 284-287)
 
-## Test
+- [ ] **Activity 284:** Measure fork+exec latency versus posix_spawn for launching a short-lived helper process.
+- [ ] **Activity 285:** Implement a parent that waits on a child and correctly reaps it, then intentionally leave a zombie and observe it with ps.
+- [ ] **Activity 286:** Use environment variables and argv to pass configuration across an exec boundary and validate malformed input safely.
+- [ ] **Activity 287:** Trace signal delivery (SIGCHLD, SIGTERM) between parent and child and implement clean shutdown.
 
-Representative distributions, cold/warm data, several sizes, repeated samples, and correctness equivalence.
+## Expert (activities 288-290)
 
-## Write
+- [ ] **Activity 288:** Compare process isolation cost (fork) against thread creation cost for the same workload and justify a choice.
+- [ ] **Activity 289:** Use namespaces or cgroups (or explain them precisely if unavailable) to reason about resource isolation for a service process.
+- [ ] **Activity 290:** Document the full process lifecycle (fork, exec, wait, reap, signal) as a state diagram with failure paths.
 
-In `notes.md`: Connect each performance result to locality, cache lines, prediction, or false sharing.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Minimal)
+## Interview Rehearsal
 
-- Choose one hot loop and establish a baseline.
-- Change one factor at a time.
-- Test several working-set sizes.
+Explain processes, address spaces, and the os/process model from a blank page. Rebuild measure fork+exec latency versus posix_spawn for launching a short-lived helper process under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

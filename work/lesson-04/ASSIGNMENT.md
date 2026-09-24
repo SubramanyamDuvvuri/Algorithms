@@ -1,35 +1,38 @@
-# Lesson 4 Assignment - Enums
+# Lesson 4 Assignment - Enums, Type Aliases, and Named States
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 4](../../course/lesson-04-enums-aliases.md) before coding. This assignment is one chapter, not one giant program. Finish one activity, compile, and test before moving to the next. Keep existing working code.
 
-## Build
+## Core (activities 31-33)
 
-Implement a constrained `FlagSet<E>` for opted-in scoped enums with set/reset/contains and unknown-bit preservation.
+- [ ] **Activity 31:** Write a `typedef` and an equivalent `using` alias for an unsigned byte.
+- [ ] **Activity 32:** Show with a compile-time check that aliases do not create new types.
+- [ ] **Activity 33:** Define an unscoped enum and a scoped enum; compare allowed conversions.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 34-37)
 
-## Test
+- [ ] **Activity 34:** Choose and inspect an explicit enum underlying type.
+- [ ] **Activity 35:** Decode raw message-type values 1, 2, and 7 with a known/unknown result.
+- [ ] **Activity 36:** Write a switch for all known states with an explicit unknown policy.
+- [ ] **Activity 37:** Define independent permission bits and combine them without mixing in message states.
 
-Empty/all flags, combinations, unknown bits, invalid combinations, and underlying-type boundaries.
+## Expert (activities 38-40)
 
-## Write
+- [ ] **Activity 38:** Implement concrete `PermissionFlags` set, reset, and contains.
+- [ ] **Activity 39:** Preserve an unknown permission bit through decode and encode.
+- [ ] **Activity 40:** Test zero, combinations, highest bit, and invalid-state handling.
 
-In `notes.md`: Explain scoped versus unscoped enums, representation, and compatibility strategy.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Type aliases are tested as aliases, not distinct types.
+- Known, unknown, and invalid values follow the stated policy.
+- Flag tests cover independent bits and unknown-bit round trip.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+An activity is complete when its behavior is predicted, the code compiles with warnings enabled, focused normal and boundary checks pass, and you can explain its ownership, failure behavior, and cost. Use `main.cpp` for experiments and demonstrations and `tests.cpp` for tests. Split into headers and source files only when code reuse requires it.
 
-## Hints (Guided)
+## Interview Rehearsal
 
-- Begin with `enum class Permission : std::uint32_t`.
-- Use an opt-in trait so arbitrary enums cannot become flag sets.
-- Store raw bits so unknown future flags can round-trip.
+Explain alias versus distinct type, scoped enum versus flags, and unknown wire-value behavior. Solve a smaller version from a blank file after the untimed work, then explain the invariant, edge cases, time, and extra-space complexity aloud.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the three core concepts from the lesson using your own code and draw any relevant owner/lifetime diagram. In `design.md`, record preconditions, invariants, error behavior, and one rejected alternative. In `benchmark.md`, record a reproducible measurement only if the work has a meaningful performance question; otherwise explain why a benchmark would not teach you anything yet.

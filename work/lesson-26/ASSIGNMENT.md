@@ -1,35 +1,38 @@
-# Lesson 26 Assignment - Async execution
+# Lesson 26 Assignment: Futures, Promises, and Cancellation
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 26](../../course/lesson-26-async.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 251-253)
 
-Build a bounded executor returning futures and a deadline-aware fan-out/fan-in operation.
+- [ ] **Activity 251:** Return a future for a pure computation.
+- [ ] **Activity 252:** Propagate exceptions from worker to future.
+- [ ] **Activity 253:** Test a failing task and verify error arrives once.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 254-257)
 
-## Test
+- [ ] **Activity 254:** Use promise to bridge a callback result.
+- [ ] **Activity 255:** Specify cancellation before start versus during work.
+- [ ] **Activity 256:** Cooperatively check stop_token in a long task.
+- [ ] **Activity 257:** Avoid dangling input views by taking ownership.
 
-Result/exception propagation, cancellation, timeout, partial failure, saturation, rejection, and shutdown.
+## Expert (activities 258-260)
 
-## Write
+- [ ] **Activity 258:** Run multiple tasks and collect all outcomes.
+- [ ] **Activity 259:** Compare async launch policies and document blocking behavior.
+- [ ] **Activity 260:** Write an API contract for result, error, cancellation, and lifetime.
 
-In `notes.md`: For every task state where it runs, who owns/waits/stops it, and how failure travels.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Light)
+## Interview Rehearsal
 
-- Define task states and ownership first.
-- Bound admission before fan-out.
-- Propagate one deadline rather than restarting timeouts.
+Explain futures, promises, and cancellation from a blank page. Rebuild use promise to bridge a callback result under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

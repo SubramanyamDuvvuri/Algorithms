@@ -1,35 +1,38 @@
-# Lesson 28 Assignment - Coroutines
+# Lesson 28 Assignment: C++20 Coroutines and Async Lifetimes
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 28](../../course/lesson-28-coroutines.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 271-273)
 
-Implement lazy `Generator<T>` and move-only `Task<T>` integrated with the thread pool.
+- [ ] **Activity 271:** Write a generator promise_type yielding integers.
+- [ ] **Activity 272:** Define initial_suspend and final_suspend behavior.
+- [ ] **Activity 273:** Own and destroy coroutine_handle exactly once.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 274-277)
 
-## Test
+- [ ] **Activity 274:** Test empty and partially consumed generators.
+- [ ] **Activity 275:** Explain which locals survive across suspension.
+- [ ] **Activity 276:** Add exception storage and rethrow at observation.
+- [ ] **Activity 277:** Implement a single-result task with an explicit scheduler policy.
 
-Empty/multiple yields, exception propagation, cancellation, destroy-while-suspended, continuation race, and frame leaks.
+## Expert (activities 278-280)
 
-## Write
+- [ ] **Activity 278:** Test destroying an unstarted and suspended task.
+- [ ] **Activity 279:** Reject dangling references across suspension with an ownership fix.
+- [ ] **Activity 280:** Compare coroutine and future APIs for cancellation and error handling.
 
-In `notes.md`: Trace coroutine frame creation, suspension, resumption, final suspend, and destruction.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Light)
+## Interview Rehearsal
 
-- Implement a synchronous lazy generator first.
-- Follow coroutine customization points in execution order.
-- Treat the frame as a resource with one owner.
+Explain c++20 coroutines and async lifetimes from a blank page. Rebuild test empty and partially consumed generators under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

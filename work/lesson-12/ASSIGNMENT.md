@@ -1,35 +1,38 @@
-# Lesson 12 Assignment - Algorithms and ranges
+# Lesson 12 Assignment: Searching, Sorting, and Selection
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 12](../../course/lesson-12-searching-sorting.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 111-113)
 
-Replace five loops with algorithms; build a lazy log pipeline and custom chunk view.
+- [ ] **Activity 111:** Implement iterative lower_bound over a sorted vector.
+- [ ] **Activity 112:** Test lower_bound on empty, duplicate, absent, and boundary keys.
+- [ ] **Activity 113:** Implement insertion sort and record its loop invariant.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 114-117)
 
-## Test
+- [ ] **Activity 114:** Implement merge sort with one reusable scratch buffer.
+- [ ] **Activity 115:** Test merge-sort stability using equal-key records.
+- [ ] **Activity 116:** Implement quicksort partition with documented boundary convention.
+- [ ] **Activity 117:** Construct sorted and duplicate-heavy inputs that expose bad pivots.
 
-Empty/single/multiple chunks, const input, temporary range safety, projections, and invalidation.
+## Expert (activities 118-120)
 
-## Write
+- [ ] **Activity 118:** Use median-of-three or randomized pivot and remeasure comparisons.
+- [ ] **Activity 119:** Implement quickselect and compare results with nth_element.
+- [ ] **Activity 120:** Choose algorithms for tiny, mostly sorted, duplicate-heavy, and top-k workloads.
 
-In `notes.md`: Explain iterator categories, laziness, ownership, and complexity.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Moderate)
+## Interview Rehearsal
 
-- Write a correct eager algorithm before a lazy pipeline.
-- Keep named backing ranges alive.
-- Implement only the iterator operations required by the declared category.
+Explain searching, sorting, and selection from a blank page. Rebuild implement merge sort with one reusable scratch buffer under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

@@ -1,56 +1,38 @@
-# Lesson 1 Assignment - Pointers and lifetime
+# Lesson 1 Assignment - Pointers, Addresses, and Lifetime
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 1](../../course/lesson-01-pointers.md) before coding. This assignment is one chapter, not one giant program. Finish one activity, compile, and test before moving to the next. Keep existing working code.
 
-## Build
+## Core (activities 1-3)
 
-Implement `not_null<T*>`, pointer-range binary search, and a non-owning intrusive singly linked list.
+- [x] **Activity 1:** Print an `int` value, its address, and the value read through `int*`.
+- [ ] **Activity 2:** Change that `int` through the pointer and confirm the original value changes.
+- [ ] **Activity 3:** Create `nullptr`; branch before dereferencing and test the null path.
 
-## Beginner Path
+## Applied (activities 4-7)
 
-Do these in order. Compile and run after every checkpoint.
+- [ ] **Activity 4:** Write `increment(int*)` with a documented null policy and compare `increment(int&)`.
+- [ ] **Activity 5:** Experiment with `const int*`, `int* const`, and `const int* const`; predict which assignments compile.
+- [ ] **Activity 6:** Walk a five-element array with `[first,last)` without reading `last`.
+- [ ] **Activity 7:** Implement linear `find(first,last,value)`; return `last` when absent.
 
-1. Declare an `int`, print its value, print its address with `&`, store that address in `int*`, and read the value with `*`.
-2. Change the integer through the pointer. Confirm that the original variable changed.
-3. Create a null pointer and check it before dereferencing. Never deliberately dereference it.
-4. Write `increment(int*)`, handle null explicitly, and compare it with `increment(int&)`.
-5. Create examples of `const int*`, `int* const`, and `const int* const`. Comment which part may change.
-6. Create a five-element array and walk it using a pointer from `begin` to one-past-end. Do not dereference one-past-end.
-7. Write `find(const int* first, const int* last, int value)` using a linear scan.
-8. Upgrade `find` into binary search while preserving the half-open range `[first,last)`.
-9. Implement `not_null<T*>` only after the earlier exercises feel obvious.
-10. Finish with the intrusive list, where nodes are owned by the caller and merely linked by the list.
+## Expert (activities 8-10)
 
-Use a debugger at least once. Pause after creating the pointer and inspect the variable, pointer value, pointee, and address.
+- [ ] **Activity 8:** Implement binary search on a sorted range; state and preserve its invariant.
+- [ ] **Activity 9:** Write `require_non_null(int*)` and test its explicit failure behavior.
+- [ ] **Activity 10:** Reverse a half-open pointer range; test empty, single, odd, and even lengths.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Verification
 
-## Test
+- Null, live, and one-past-end paths are distinguished without reading invalid memory.
+- Linear and binary search agree on sorted arrays; absent returns last.
+- Reverse agrees with a simple index-based oracle for lengths 0-8.
 
-Null/empty/single-element/boundary cases; dangling-pointer audit; compile-time construction checks.
+An activity is complete when its behavior is predicted, the code compiles with warnings enabled, focused normal and boundary checks pass, and you can explain its ownership, failure behavior, and cost. Use `main.cpp` for experiments and demonstrations and `tests.cpp` for tests. Split into headers and source files only when code reuse requires it.
 
-For the first pass, use simple `assert` statements. You do not need a testing framework yet.
+## Interview Rehearsal
 
-## Write
+Explain ownership and the last valid dereference for a returned pointer; implement and test binary search without out-of-range access. Solve a smaller version from a blank file after the untimed work, then explain the invariant, edge cases, time, and extra-space complexity aloud.
 
-In `notes.md`: Draw ownership/lifetime diagrams and explain `const T*`, `T* const`, one-past-end, and every dereference.
+## Written Evidence
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
-
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
-
-## Hints (Guided)
-
-- Start with tiny address experiments: create an `int`, inspect `&value`, dereference it, and mutate through a pointer.
-- For `not_null<T*>`, store one pointer; delete default construction, reject null, then add `get`, `*`, and `->`. Never delete the pointee.
-- For binary search use `[first,last)` and preserve that invariant after every branch.
-- Put the link inside each intrusive node; the list stores only a head and never allocates or frees nodes.
-- Draw object and pointer lifetimes for every test.
-
-## Definition of Done
-
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the three core concepts from the lesson using your own code and draw any relevant owner/lifetime diagram. In `design.md`, record preconditions, invariants, error behavior, and one rejected alternative. In `benchmark.md`, record a reproducible measurement only if the work has a meaningful performance question; otherwise explain why a benchmark would not teach you anything yet.

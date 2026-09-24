@@ -1,35 +1,38 @@
-# Lesson 17 Assignment - Error handling
+# Lesson 17 Assignment: Dynamic Programming, Greedy, and Proofs
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 17](../../course/lesson-17-dynamic-programming.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 161-163)
 
-Implement the same parser using exceptions and `std::expected`; add failure injection.
+- [ ] **Activity 161:** Write a brute-force reference for weighted interval scheduling.
+- [ ] **Activity 162:** Define a minimal DP state and recurrence.
+- [ ] **Activity 163:** Implement memoized recursion and count repeated states avoided.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 164-167)
 
-## Test
+- [ ] **Activity 164:** Implement bottom-up tabulation with predecessor search.
+- [ ] **Activity 165:** Reconstruct the selected interval set, not just its score.
+- [ ] **Activity 166:** Test ties, empty input, and overlapping intervals.
+- [ ] **Activity 167:** Reduce memory in a one-dimensional DP where dependencies allow.
 
-Malformed input, allocation/I/O failure, rollback, nested context, retryable/fatal errors, and no-throw paths.
+## Expert (activities 168-170)
 
-## Write
+- [ ] **Activity 168:** Implement greedy interval scheduling for max count.
+- [ ] **Activity 169:** Give an exchange argument for that greedy choice.
+- [ ] **Activity 170:** Construct a counterexample showing the same greedy rule fails for weighted intervals.
 
-In `notes.md`: Document each API's errors, channel, guarantee, resulting state, and retry policy.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Moderate)
+## Interview Rehearsal
 
-- Write failure taxonomy before choosing a mechanism.
-- For a strong guarantee, perform risky work on temporary state and commit last.
-- Audit all callees before declaring `noexcept`.
+Explain dynamic programming, greedy, and proofs from a blank page. Rebuild implement bottom-up tabulation with predecessor search under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

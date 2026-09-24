@@ -1,6 +1,6 @@
 # Course Map
 
-The main course is now linear: start with `course/README.md` and follow Lesson 1, Lesson 2, Lesson 3, and so on.
+The main course is now linear: start with `course/README.md` and follow Lesson 1, Lesson 2, Lesson 3, and so on, through Lesson 42. Lessons 29-34 added a Linux internals and kernel-programming block (processes/fork-exec, syscalls and strace, mmap/virtual memory/custom allocators, scheduling and cache/NUMA topology, perf/flamegraphs, and writing a kernel module) between the concurrency lessons and the architecture/GPU lessons, which shifted the former Lessons 29-36 to 35-42.
 
 This file is a reference map for the deeper topic folders. The `lessons/` folder rebuilds fundamentals. The `dsa/` folder covers algorithms and data structures. The `expert/` folder turns those fundamentals into senior-engineer depth.
 

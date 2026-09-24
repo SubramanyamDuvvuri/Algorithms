@@ -1,35 +1,38 @@
-# Lesson 15 Assignment - Advanced generic programming
+# Lesson 15 Assignment: Binary Trees, BSTs, Balanced Trees, and Tries
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 15](../../course/lesson-15-trees.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 141-143)
 
-Implement a small type-erased callable and value-semantic type-erased storage backend.
+- [ ] **Activity 141:** Define owned tree nodes and implement inorder traversal.
+- [ ] **Activity 142:** Implement BST insert, lookup, and duplicate-key policy.
+- [ ] **Activity 143:** Implement BST erase for leaf, one-child, and two-child cases.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 144-147)
 
-## Test
+- [ ] **Activity 144:** Test inorder output against std::map on randomized operations.
+- [ ] **Activity 145:** Measure height for sorted versus shuffled insertion.
+- [ ] **Activity 146:** Explain how balancing restores logarithmic height; inspect std::map behavior.
+- [ ] **Activity 147:** Implement iterative DFS to avoid recursion on a deep tree.
 
-Empty state, copy/move, small/large objects, throwing callables, capabilities, and destruction.
+## Expert (activities 148-150)
 
-## Write
+- [ ] **Activity 148:** Implement level-order BFS with a queue.
+- [ ] **Activity 149:** Implement a trie with insert and exact lookup.
+- [ ] **Activity 150:** Add prefix enumeration and test empty, shared, and missing prefixes.
 
-In `notes.md`: Compare SFINAE, traits, CRTP, templates, virtual dispatch, and type erasure.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Moderate)
+## Interview Rehearsal
 
-- Build a virtual-interface oracle first.
-- Separate a type-erased public wrapper from concrete hidden models.
-- Include diagnostics and compile time in your design comparison.
+Explain binary trees, bsts, balanced trees, and tries from a blank page. Rebuild test inorder output against std::map on randomized operations under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

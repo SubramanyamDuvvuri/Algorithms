@@ -1,35 +1,38 @@
-# Lesson 35 Assignment - ECS
+# Lesson 35 Assignment: Patterns for Extensible C++ Systems
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 35](../../course/lesson-35-design-patterns.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 341-343)
 
-Build generation-safe entities, sparse-set components, queries, deferred structural changes, and parallel system scheduling.
+- [ ] **Activity 341:** State the change scenario and current coupling.
+- [ ] **Activity 342:** Implement strategy via an interface or callable.
+- [ ] **Activity 343:** Write a factory with explicit error result.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 344-347)
 
-## Test
+- [ ] **Activity 344:** Implement observer subscription with lifetime-safe unsubscribe.
+- [ ] **Activity 345:** Test callback removal during notification.
+- [ ] **Activity 346:** Implement variant visitor for a closed message set.
+- [ ] **Activity 347:** Compare virtual dispatch and variant exhaustiveness.
 
-Stale handles, add/remove cycles, entity reuse, mutation during iteration, query correctness, and race detection.
+## Expert (activities 348-350)
 
-## Write
+- [ ] **Activity 348:** Avoid shared ownership where a scoped subscription suffices.
+- [ ] **Activity 349:** Record allocation and ABI effects of each approach.
+- [ ] **Activity 350:** Choose one design and defend the rejected alternative.
 
-In `notes.md`: Benchmark sparse-set versus archetype workloads and defend scheduling dependencies.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Minimal)
+## Interview Rehearsal
 
-- Implement index-plus-generation identity first.
-- Benchmark one sparse-set store before generalizing.
-- Defer structural mutations during iteration.
+Explain patterns for extensible c++ systems from a blank page. Rebuild implement observer subscription with lifetime-safe unsubscribe under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

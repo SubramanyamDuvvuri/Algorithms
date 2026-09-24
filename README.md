@@ -1,12 +1,12 @@
 # Expert C++ Systems Engineering Course
 
-This repo is a deep training program for becoming dangerous in modern C++, multithreaded systems, performance work, system design, and large-scale software architecture.
+This repo is a connected training program for modern C++, algorithms, data structures, concurrent systems, performance work, and GPU-aware design.
 
 The goal is not "know C++ syntax." The goal is to think like an engineer who can design and defend complex C++ systems: ownership, lifetime, APIs, concurrency, memory layout, failure modes, deployment, observability, and architecture tradeoffs.
 
 ## How This Course Works
 
-The canonical path is `course/README.md`: 36 numbered lessons from pointers and object lifetime through a multithreaded order-matching engine. Supporting source labs live under `src/`, larger build specifications under `projects/`, and engineering templates under `templates/`.
+The canonical path is [course/README.md](course/README.md): 42 lessons and 420 continuously numbered activities, from pointers and object lifetime through algorithms, concurrency, performance, Linux/kernel internals, architecture, GPU fundamentals, and a streaming analytics capstone. Every lesson opens with a **What You Gain** section naming the concrete skill and why it matters for real engineering and interview work. Supporting source labs live under `src/`, larger optional projects under `projects/`, and engineering templates under `templates/`.
 
 Do not just read. For every serious topic, you must produce:
 
@@ -70,7 +70,7 @@ That habit is what moves you from "I can code" to "I can own systems."
 ## Start Here
 
 1. Open `course/README.md`.
-2. Complete Lesson 1, then Lesson 2, through Lesson 36 without skipping mastery gates.
+2. Complete the ten activities in each lesson, in order, from Lesson 1 through Lesson 42.
 3. Keep each lesson's code and evidence together; reading alone does not complete a lesson.
 4. Build and run the starter labs.
 5. Pick one capstone from `projects/` and keep improving it throughout the course.

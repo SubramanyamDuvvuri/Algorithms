@@ -1,35 +1,38 @@
-# Lesson 3 Assignment - Object layout
+# Lesson 3 Assignment - Structs, Members, Unions, and Layout
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 3](../../course/lesson-03-object-layout.md) before coding. This assignment is one chapter, not one giant program. Finish one activity, compile, and test before moving to the next. Keep existing working code.
 
-## Build
+## Core (activities 21-23)
 
-Build a layout inspector using `sizeof`, `alignof`, and `offsetof`; optimize a record layout; define a portable binary format.
+- [ ] **Activity 21:** Declare a two-field struct and initialize it with aggregate and designated syntax.
+- [ ] **Activity 22:** Read and change members through an object and a pointer to that object.
+- [ ] **Activity 23:** Pass a record by value and by `const&`; observe which operations copy.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 24-27)
 
-## Test
+- [ ] **Activity 24:** Nest one record inside another and initialize every member.
+- [ ] **Activity 25:** Compare `sizeof`, `alignof`, and member offsets for three field orders.
+- [ ] **Activity 26:** Check `std::is_standard_layout_v` before using `offsetof` as a portable tool.
+- [ ] **Activity 27:** Store one of two trivial representations in a union and track the active member explicitly.
 
-Round-trip serialization, malformed/truncated input, endianness, version mismatch, and alignment-safe reads.
+## Expert (activities 28-30)
 
-## Write
+- [ ] **Activity 28:** Explain why a raw `memcpy` of a struct is not a portable packet format.
+- [ ] **Activity 29:** Encode the shared packet length as two explicit little-endian bytes.
+- [ ] **Activity 30:** Decode the two-byte length and validate total frame size before making a payload view.
 
-In `notes.md`: Record layouts before/after and explain padding, standard layout, and why raw `memcpy` serialization is unsafe.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Measured offsets explain every padding byte on the current compiler.
+- Encoding is byte-for-byte stable and decoding never reads beyond input.
+- Truncated frames and oversized lengths have explicit results without invalid reads.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+An activity is complete when its behavior is predicted, the code compiles with warnings enabled, focused normal and boundary checks pass, and you can explain its ownership, failure behavior, and cost. Use `main.cpp` for experiments and demonstrations and `tests.cpp` for tests. Split into headers and source files only when code reuse requires it.
 
-## Hints (Guided)
+## Interview Rehearsal
 
-- Compare three field orders and predict size before running.
-- Encode wire fields byte-by-byte; never reinterpret network bytes as a native struct.
-- Specify magic, version, lengths, byte order, payload, and checksum first.
+Defend a struct layout and show how to serialize it portably across machines. Solve a smaller version from a blank file after the untimed work, then explain the invariant, edge cases, time, and extra-space complexity aloud.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the three core concepts from the lesson using your own code and draw any relevant owner/lifetime diagram. In `design.md`, record preconditions, invariants, error behavior, and one rejected alternative. In `benchmark.md`, record a reproducible measurement only if the work has a meaningful performance question; otherwise explain why a benchmark would not teach you anything yet.

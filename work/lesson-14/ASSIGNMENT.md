@@ -1,35 +1,38 @@
-# Lesson 14 Assignment - Templates
+# Lesson 14 Assignment: Hash Tables, Sets, and Heaps
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 14](../../course/lesson-14-hashing-heaps.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 131-133)
 
-Implement generic `SmallVector<T,N>`, binary heap, and graph types with deduction guides.
+- [ ] **Activity 131:** Implement a key-to-count frequency table using unordered_map.
+- [ ] **Activity 132:** Test duplicate keys, missing keys, and empty input.
+- [ ] **Activity 133:** Write a small separate-chaining hash table with a configurable hash.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 134-137)
 
-## Test
+- [ ] **Activity 134:** Force collisions and verify lookup and erase correctness.
+- [ ] **Activity 135:** Track load factor and rehash without losing entries.
+- [ ] **Activity 136:** Explain average versus adversarial lookup cost.
+- [ ] **Activity 137:** Implement binary min-heap push and pop on vector.
 
-Primitive, move-only, non-default-constructible, and throwing element types; boundary capacity cases.
+## Expert (activities 138-140)
 
-## Write
+- [ ] **Activity 138:** Test heap property after each randomized operation.
+- [ ] **Activity 139:** Add decrease-key or a stale-entry policy for priority updates.
+- [ ] **Activity 140:** Use the frequency index and heap for top-k, then compare with a sorted oracle.
 
-In `notes.md`: Trace deduction, overload selection, specialization, and instantiation.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Moderate)
+## Interview Rehearsal
 
-- Build an integer version first, then parameterize it.
-- Keep definitions visible where templates instantiate.
-- Test move-only, throwing, and non-default-constructible types.
+Explain hash tables, sets, and heaps from a blank page. Rebuild force collisions and verify lookup and erase correctness under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

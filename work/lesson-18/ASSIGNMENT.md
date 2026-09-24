@@ -1,35 +1,38 @@
-# Lesson 18 Assignment - Complexity and benchmarking
+# Lesson 18 Assignment: Strings, Bit Manipulation, and Advanced Patterns
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 18](../../course/lesson-18-advanced-algorithms.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 171-173)
 
-Build a reusable timing harness and measure vector growth, hash load factors, and tree traversal.
+- [ ] **Activity 171:** Implement naive substring search with clear empty-pattern semantics.
+- [ ] **Activity 172:** Count comparisons on repeated-character worst cases.
+- [ ] **Activity 173:** Construct KMP prefix table and state its invariant.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 174-177)
 
-## Test
+- [ ] **Activity 174:** Implement KMP matching and compare against std::string::find.
+- [ ] **Activity 175:** Test overlapping matches and embedded NUL bytes.
+- [ ] **Activity 176:** Implement bitset set, clear, test, and count operations.
+- [ ] **Activity 177:** Guard shift widths and index bounds.
 
-Warm-up, baseline, dead-code prevention, repeated samples, varied input distributions, and outliers.
+## Expert (activities 178-180)
 
-## Write
+- [ ] **Activity 178:** Implement prefix-sum range queries with overflow policy.
+- [ ] **Activity 179:** Implement sliding-window longest substring without repeats.
+- [ ] **Activity 180:** Explain when each technique beats a simple scan and when it does not.
 
-In `notes.md`: Report median/p95/p99, variance, environment, Big-O, amortized proof, and limitations.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Light)
+## Interview Rehearsal
 
-- State the benchmark hypothesis first.
-- Keep setup outside timing and consume results.
-- Report a distribution, not one duration.
+Explain strings, bit manipulation, and advanced patterns from a blank page. Rebuild implement kmp matching and compare against std::string::find under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

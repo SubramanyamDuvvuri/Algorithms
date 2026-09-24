@@ -1,35 +1,38 @@
-# Lesson 16 Assignment - Concepts and constexpr
+# Lesson 16 Assignment: Graph Representations and Traversal
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 16](../../course/lesson-16-graphs.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 151-153)
 
-Constrain earlier generic types; implement a `consteval` schema validator and units library.
+- [ ] **Activity 151:** Build adjacency-list representation for directed vertices.
+- [ ] **Activity 152:** Reject or define behavior for invalid vertex identifiers.
+- [ ] **Activity 153:** Implement BFS and verify shortest unweighted distances.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 154-157)
 
-## Test
+- [ ] **Activity 154:** Reconstruct a BFS parent path.
+- [ ] **Activity 155:** Implement iterative DFS with explicit visited state.
+- [ ] **Activity 156:** Detect a directed cycle using three-color DFS.
+- [ ] **Activity 157:** Implement topological sorting for acyclic inputs.
 
-Compile-pass and compile-fail cases, dimensional errors, boundary constant evaluation, and diagnostics.
+## Expert (activities 158-160)
 
-## Write
+- [ ] **Activity 158:** Test disconnected, self-loop, and parallel-edge cases.
+- [ ] **Activity 159:** Implement Dijkstra for nonnegative weighted edges.
+- [ ] **Activity 160:** Reject negative weights and compare shortest paths against a small brute-force oracle.
 
-In `notes.md`: Explain constraints, subsumption, `constexpr`, `consteval`, and semantic laws.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Moderate)
+## Interview Rehearsal
 
-- Constrain only operations the algorithm uses.
-- Keep compile-pass and compile-fail examples.
-- Treat compilation time as a resource.
+Explain graph representations and traversal from a blank page. Rebuild reconstruct a bfs parent path under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

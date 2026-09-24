@@ -1,35 +1,38 @@
-# Lesson 6 Assignment - References and lifetime
+# Lesson 6 Assignment - References, Const, Strings, and Value Categories
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 6](../../course/lesson-06-references-strings.md) before coding. This assignment is one chapter, not one giant program. Finish one activity, compile, and test before moving to the next. Keep existing working code.
 
-## Build
+## Core (activities 51-53)
 
-Build a `std::string_view` tokenizer, then audit and redesign ten reference/view-returning APIs.
+- [ ] **Activity 51:** Bind a mutable reference and confirm changes affect its source.
+- [ ] **Activity 52:** Bind `const&` to a value and classify allowed reads and writes.
+- [ ] **Activity 53:** Compare pointer optionality with reference non-null intent.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 54-57)
 
-## Test
+- [ ] **Activity 54:** Inspect lvalue, rvalue, and named-rvalue-reference expressions.
+- [ ] **Activity 55:** Test local temporary lifetime extension through a `const&` without returning it.
+- [ ] **Activity 56:** Create a `std::string` owner and two `string_view` subviews.
+- [ ] **Activity 57:** Document invalidation after owner destruction, mutation, and reallocation.
 
-Empty input, temporary strings, container reallocation, returned locals, reference members, and lifetime extension.
+## Expert (activities 58-60)
 
-## Write
+- [ ] **Activity 58:** Write a tokenizer returning borrowed views into caller-owned input.
+- [ ] **Activity 59:** Add an owning-token alternative and compare copies and lifetimes.
+- [ ] **Activity 60:** Audit ten signatures returning values, references, pointers, or views; fix the unsafe ones.
 
-In `notes.md`: Classify expression value categories and write explicit lifetime contracts.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Every returned view has a named owner and invalidation point.
+- Borrowed and owning tokenizer outputs match on empty and repeated delimiters.
+- No test deliberately dereferences a dangling view.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+An activity is complete when its behavior is predicted, the code compiles with warnings enabled, focused normal and boundary checks pass, and you can explain its ownership, failure behavior, and cost. Use `main.cpp` for experiments and demonstrations and `tests.cpp` for tests. Split into headers and source files only when code reuse requires it.
 
-## Hints (Guided)
+## Interview Rehearsal
 
-- Label every parameter owned/borrowed, mutable/read-only, nullable/non-null, and its validity period.
-- `string_view` never extends string lifetime; reason about bad cases without executing UB.
-- Use `decltype((expr))` with `static_assert` to inspect value categories.
+Trace a returned `string_view` through three callers and identify the exact dangling point. Solve a smaller version from a blank file after the untimed work, then explain the invariant, edge cases, time, and extra-space complexity aloud.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the three core concepts from the lesson using your own code and draw any relevant owner/lifetime diagram. In `design.md`, record preconditions, invariants, error behavior, and one rejected alternative. In `benchmark.md`, record a reproducible measurement only if the work has a meaningful performance question; otherwise explain why a benchmark would not teach you anything yet.

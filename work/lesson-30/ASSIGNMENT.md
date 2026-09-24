@@ -1,35 +1,38 @@
-# Lesson 30 Assignment - Allocators
+# Lesson 30 Assignment: Syscalls, the Kernel Boundary, and strace/ltrace
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 30](../../course/lesson-30-syscalls-and-kernel-boundary.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 291-293)
 
-Implement a bump arena and fixed-block pool; make the trie or event batch PMR-aware.
+- [ ] **Activity 291:** Trace a simple program with strace and map each observed syscall to the C++ standard library call that produced it.
+- [ ] **Activity 292:** Write a raw syscall wrapper (e.g., via syscall()) for a function normally provided by libc and compare behavior.
+- [ ] **Activity 293:** Measure the cost of a syscall-heavy loop (e.g., repeated small read/write) versus a batched version.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 294-297)
 
-## Test
+- [ ] **Activity 294:** Use ltrace and strace together to distinguish library-level calls from actual kernel entries.
+- [ ] **Activity 295:** Instrument error handling for a syscall that can return EINTR, EAGAIN, or ENOMEM and test each path.
+- [ ] **Activity 296:** Compare buffered I/O (std::fstream) against unbuffered syscalls (read/write) for the same workload.
+- [ ] **Activity 297:** Explain and demonstrate the user/kernel mode transition cost using a microbenchmark.
 
-Alignment, exhaustion, reset, invalid sizes, destructor policy, resource lifetime escape, and multithread policy.
+## Expert (activities 298-300)
 
-## Write
+- [ ] **Activity 298:** Reduce a program's syscall count using batching or vectored I/O (readv/writev) and measure the improvement.
+- [ ] **Activity 299:** Diagnose a synthetic 'slow' program using strace -c and identify its dominant syscall cost.
+- [ ] **Activity 300:** Document the syscall boundary contract for one function: preconditions, error codes, and retry policy.
 
-In `notes.md`: Report allocation count, footprint, fragmentation, latency, ownership, and OOM behavior.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Minimal)
+## Interview Rehearsal
 
-- Start with allocate-and-reset arena behavior.
-- Round addresses for alignment before advancing.
-- Ensure resources outlive all PMR containers.
+Explain syscalls, the kernel boundary, and strace/ltrace from a blank page. Rebuild use ltrace and strace together to distinguish library-level calls from actual kernel entries under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.

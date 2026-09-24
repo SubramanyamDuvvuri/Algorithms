@@ -1,35 +1,38 @@
-# Lesson 13 Assignment - Move semantics
+# Lesson 13 Assignment: Linked Structures, Stacks, Queues, and Deques
 
-Read the matching lesson in [the course](../../course/README.md) before coding.
+Read [Lesson 13](../../course/lesson-13-linear-structures.md) first. Complete each activity in order; do not wait until the tenth to compile and test. Activities continue numbering from the previous lesson.
 
-## Build
+## Core (activities 121-123)
 
-Instrument a resource type; build a forwarding factory and move-only small-buffer callable.
+- [ ] **Activity 121:** Implement a vector-backed stack with push, pop, and top contracts.
+- [ ] **Activity 122:** Test empty-stack behavior explicitly.
+- [ ] **Activity 123:** Implement a circular-buffer queue with head, size, and capacity invariants.
 
-Use `main.cpp` for the implementation or demonstration entry point and `tests.cpp` for automated tests. Split code into headers and additional source files when the design needs it.
+## Applied (activities 124-127)
 
-## Test
+- [ ] **Activity 124:** Handle queue wraparound and growth without losing order.
+- [ ] **Activity 125:** Implement a singly linked list with unique ownership of nodes.
+- [ ] **Activity 126:** Test head, middle, and tail insertion/removal.
+- [ ] **Activity 127:** Add a list destructor/clear path and verify no leaked nodes.
 
-Copy/move counts, vector reallocation, return-by-value, moved-from use, throwing and `noexcept` moves.
+## Expert (activities 128-130)
 
-## Write
+- [ ] **Activity 128:** Implement a deque operation needed by command history.
+- [ ] **Activity 129:** Compare measured traversal of vector and linked list.
+- [ ] **Activity 130:** Explain iterator/reference invalidation and complexity for each mutation.
 
-In `notes.md`: Explain every construction and cases where `std::move` inhibits elision.
+## Verification
 
-In `design.md`: record requirements, invariants, ownership, API decisions, rejected alternatives, failure behavior, and complexity.
+- Run focused normal, empty, boundary, and failure-path checks where the activity has those cases.
+- Compare with a simple oracle or standard-library equivalent when possible; for concurrency and GPU work, verify invariants and results under repeated runs.
+- Compile with warnings enabled. Use sanitizers or profiling tools when available, and record environment and limitations.
 
-In `benchmark.md`: state the hypothesis, workload, environment, method, raw summary, interpretation, and limitations. If benchmarking is not relevant, explain why.
+Use `main.cpp` for the demonstration or implementation, `tests.cpp` for tests, and additional files when they improve the design. An activity is complete when you can explain its invariant, ownership, failure behavior, and time and extra-space cost. Do not claim a timed run proves correctness.
 
-## Hints (Moderate)
+## Interview Rehearsal
 
-- Log constructor/destructor IDs and addresses.
-- Understand resource transfer before forwarding.
-- Forward each named forwarding-reference argument exactly once.
+Explain linked structures, stacks, queues, and deques from a blank page. Rebuild handle queue wraparound and growth without losing order under a time limit, then defend an edge case and a rejected alternative.
 
-## Definition of Done
+## Written Evidence
 
-- Code compiles with warnings enabled and no ignored warnings.
-- Tests cover normal, boundary, invalid, and failure paths.
-- Sanitizers or equivalent diagnostics are run where available.
-- Complexity and ownership are explicit.
-- The matching lesson's mastery gate can be answered without notes.
+In `notes.md`, explain the model in your own words and record a mistake or surprising result. In `design.md`, state assumptions, invariants, ownership, errors, and tradeoffs. In `benchmark.md`, include a reproducible workload and measured results when performance is relevant; otherwise say why it is not yet meaningful.
